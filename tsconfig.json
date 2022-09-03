@@ -18,10 +18,14 @@
     "jsx": "preserve",
     "allowJs": true,
     "resolveJsonModule": true,
+    "isolatedModules":true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@/*":["src/*"]
+    }
   },
-  "include": ["./src", "./types"],
+  "include": ["./src", "./types","src/**/*.vue"],
   "compileOnSave": false
 }

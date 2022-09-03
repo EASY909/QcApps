@@ -1,15 +1,15 @@
 <template>
   <div class="index">
     <div class="flex-wrap">
-      <div class="book-keeping flex-wrap">
+      <div class="cash-book flex-wrap" @tap="gotoCashBook">
         <div class="img-warp flex-wrap">
-          <img :src="BookImg" />
+          <img :src="CashBookImg" />
         </div>
         <span>记账</span>
       </div>
-      <div class="record flex-wrap">
+      <div class="note-book flex-wrap" @tap="gotoNoteBook">
         <div class="img-warp flex-wrap">
-          <img :src="RecordImg" />
+          <img :src="NoteBookImg" />
         </div>
         <span>记事</span>
       </div>
@@ -18,14 +18,29 @@
 </template>
 
 <script setup lang="ts">
-import BookImg from "../../assets/images/book.png";
-import RecordImg from "../../assets/images/record.png";
+import CashBookImg from "@/images/cash-book.png";
+import NoteBookImg from "@/images/note-book.png";
+import { navigateTo } from '@tarojs/taro';
+
+const gotoCashBook = () => {
+  navigateTo({
+    url: '/pages/cash-book/index'
+  })
+}
+
+const gotoNoteBook = () => {
+  console.log('gotoNoteBook');
+};
+
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/index.scss';
+
 .index {
-  background-color: #fafafa;
+  background-color: $bg-white;
   height: 100vh;
+
   .flex-wrap {
     display: flex;
     flex-direction: column;
@@ -33,30 +48,35 @@ import RecordImg from "../../assets/images/record.png";
     align-items: center;
     height: 100%;
   }
+
   img {
     width: 40px;
     height: 40px;
   }
-  .book-keeping,
-  .record {
+
+  .cash-book,
+  .note-book {
     width: 40vh;
     height: 20vh;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 20px;
     padding: 20px;
     box-sizing: border-box;
-    .img-warp{
-      background-color: #555843;
+
+    .img-warp {
+      background-color: $grown;
       width: 60px;
       height: 60px;
       border-radius: 30px;
     }
-    span{
+
+    span {
       margin-top: 10px;
       font-size: 16px;
     }
   }
-  .record {
+
+  .note-book {
     margin-top: 10vh;
   }
 }
