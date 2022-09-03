@@ -7,8 +7,9 @@ module.exports = {
   defineConstants: {
   },
   alias: {
-    '@/images': path.resolve(__dirname, '..', 'src/assets/images'),
-    '@/constants': path.resolve(__dirname, '..', 'src/constants'),
+    '@': path.resolve(__dirname, '..', 'src/'),
+    '@images': path.resolve(__dirname, '..', 'src/assets/images'),
+    '@constants': path.resolve(__dirname, '..', 'src/constants'),
   },
   mini: {},
   h5: {}
