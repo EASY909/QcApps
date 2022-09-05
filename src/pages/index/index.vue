@@ -1,13 +1,13 @@
 <template>
   <div class="index">
     <div class="flex-wrap">
-      <div class="cash-book flex-wrap" @tap="gotoCashBook">
+      <div class="cash-book flex-wrap" @tap="gotoCash">
         <div class="img-warp flex-wrap">
           <img :src="CashBookImg" />
         </div>
         <span>记账</span>
       </div>
-      <div class="note-book flex-wrap" @tap="gotoNoteBook">
+      <div class="note-book flex-wrap" @tap="gotoNote">
         <div class="img-warp flex-wrap">
           <img :src="NoteBookImg" />
         </div>
@@ -20,27 +20,26 @@
 <script setup lang="ts">
 import CashBookImg from "@images/cash-book.png";
 import NoteBookImg from "@images/note-book.png";
-import { navigateTo } from '@tarojs/taro';
+import { navigateTo } from "@tarojs/taro";
 
-const gotoCashBook = () => {
+const gotoCash = () => {
   navigateTo({
-    url: '/pages/cash-book/index'
-  })
-}
-
-const gotoNoteBook = () => {
-  console.log('gotoNoteBook');
+    url: "/pages/cash-book/index",
+  });
 };
 
+const gotoNote = () => {
+  console.log("gotoNoteBook");
+};
 </script>
 
 <style lang="scss">
-@import '@/assets/styles/index.scss';
+@import "@/assets/styles/index.scss";
 
 .index {
   background-color: $bg-white;
   height: 100vh;
-
+  font-size: 16px;
   .flex-wrap {
     display: flex;
     flex-direction: column;

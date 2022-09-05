@@ -4,3 +4,12 @@ $white:#fff;
 $bg-white:#fafafa;
 
 $font-color:#3b3b3b;
+
+@mixin ml($width) {
+  margin-left:$width;
+}
+
+@mixin mr($width) {
+  margin-right:$width;
+}
+
