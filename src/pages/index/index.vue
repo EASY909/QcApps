@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index f16">
     <div class="flex-wrap">
       <div class="cash-book flex-wrap" @tap="gotoCash">
         <div class="img-warp flex-wrap">
@@ -39,7 +39,6 @@ const gotoNote = () => {
 .index {
   background-color: $bg-white;
   height: 100vh;
-  font-size: 16px;
   .flex-wrap {
     display: flex;
     flex-direction: column;

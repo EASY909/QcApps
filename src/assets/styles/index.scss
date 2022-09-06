@@ -1,15 +1,65 @@
 $green: #3db778;
-$grown:#555843;
-$white:#fff;
-$bg-white:#fafafa;
+$grown: #555843;
+$white: #fff;
+$bg-white: #fafafa;
 
-$font-color:#3b3b3b;
+$font-color: #3b3b3b;
+$font-grown:#b5b5b5;
 
-@mixin ml($width) {
-  margin-left:$width;
+$position: (
+  (alias: t,
+    attr: top),
+  (alias: r,
+    attr: right),
+  (alias: b,
+    attr: bottom),
+  (alias: l,
+    attr: left)
+);
+
+@for $j from 1 through length($position) {
+  $item: nth($position, $j);
+
+
+  @for $i from 1 to 10 {
+    .m#{$i*4} {
+      margin: #{$i * 4}px;
+    }
+
+    .p#{$i*4} {
+      padding: #{$i * 4}px;
+    }
+
+    .m#{map-get($item, alias)}#{$i*4} {
+      margin-#{map-get($item, attr)}: #{$i * 4}px;
+    }
+
+    .p#{map-get($item, alias)}#{$i*4} {
+      padding-#{map-get($item, attr)}: #{$i * 4}px;
+    }
+  }
 }
 
-@mixin mr($width) {
-  margin-right:$width;
-}
+$font-size: 12, 14, 16, 18, 20, 22, 24;
 
+@each $size in $font-size {
+  .f#{$size} {
+    font-size: #{$size}px;
+    line-height: calc(3px * $size / 2);
+  }
+  .f#{$size}-light {
+    font-size: #{$size}px;
+    font-weight: 400;
+    line-height: calc(3px * $size / 2);
+  }
+  .f#{$size}-middle {
+    font-size: #{$size}px;
+    font-weight: 500;
+    line-height: calc(3px * $size / 2);
+  }
+  .f#{$size}-bold {
+    font-size: #{$size}px;
+    font-weight: 600;
+    line-height: calc(3px * $size / 2);
+  }
+}
