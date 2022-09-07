@@ -1,0 +1,28 @@
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center-between {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
+.flex-center-start {
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+.single-line {
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-right: 1px;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+  word-break: break-all;
+}
