@@ -11,7 +11,6 @@ import CashDetailCard from "./CashDetailCard.vue";
 <style lang="scss">
 .cash-detail-index {
   padding: 16px;
-  // background-color: $bg-white;
   background-color: #ededed;
 }
 </style>
