@@ -30,12 +30,14 @@
 </template>
 
 <script setup lang="ts">
-import DetailImg from "@images/cash-detail.png";
-import DetailSelectorImg from "@images/cash-detail-selector.png";
-import TotalImg from "@images/cash-total.png";
-import TotalSelectorImg from "@images/cash-total-selector.png";
-import SettingImg from "@images/cash-setting.png";
-import SettingSelectorImg from "@images/cash-setting-selector.png";
+import {
+  DetailImg,
+  DetailSelectorImg,
+  TotalImg,
+  TotalSelectorImg,
+  SettingImg,
+  SettingSelectorImg,
+} from "@constants/image";
 import { ref } from "vue";
 import { CASH_PAGE } from "@constants/cash";
 import CashDetail from "./components/CashDetail.vue";
