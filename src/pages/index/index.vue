@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import CashBookImg from "@images/cash-book.png";
-import NoteBookImg from "@images/note-book.png";
+import { CashBookImg } from "@constants/image";
+import { NoteBookImg } from "@constants/image";
 import { navigateTo } from "@tarojs/taro";
 
 const gotoCash = () => {

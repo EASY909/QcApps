@@ -2,23 +2,23 @@
   <div class="cash-detail-card">
     <div class="cash-detail-card__header flex-center-between">
       <div class="cash-detail-card__header--time">
-        <span class="cash-detail-card__header--time-date mr4 f16-bold">
+        <span class="cash-detail-card__header--time-date mr4 f14">
           {{ props.cardInfos.cardHeader.date }}
         </span>
-        <span class="cash-detail-card__header--time-week f16-bold">
+        <span class="cash-detail-card__header--time-week f14">
           {{ props.cardInfos.cardHeader.week }}
         </span>
       </div>
-      <div class="cash-detail-card__header--detail">
-        <h3 class="cash-detail-card__header--detail-pay">
+      <div class="cash-detail-card__header--detail flex-center">
+        <h3 class="cash-detail-card__header--detail-pay flex-center">
           <span class="cash-pay f14">出</span>
-          <span class="f16-bold ml4">
+          <span class="f14 ml4">
             {{ props.cardInfos.cardHeader.totalPay }}
           </span>
         </h3>
-        <h3 class="cash-detail-card__header--detail-income ml12">
+        <h3 class="cash-detail-card__header--detail-income ml16 flex-center">
           <span class="cash-income f14">入</span>
-          <span class="f16-bold ml4">
+          <span class="f14 ml4">
             {{ props.cardInfos.cardHeader.totalIncome }}
           </span>
         </h3>
@@ -35,7 +35,7 @@
       </div>
       <div class="cash-detail-card__content--detail flex-center-between">
         <div>
-          <h3 class="f16-bold">{{ content.typeDescription }}</h3>
+          <h3 class="f14">{{ content.typeDescription }}</h3>
           <p class="f14 flex-center-between">
             <span class="cash-detail--time">
               {{ content.detailTime }}
@@ -45,7 +45,12 @@
             </span>
           </p>
         </div>
-        <h2 class="f16-bold mb20">{{ content.pay }}</h2>
+        <h2
+          class="f16-bold mb16"
+          :class="content.pay >= 0 ? 'cash-income' : 'cash-pay'"
+        >
+          {{ content.pay >= 0 ? `+${content.pay}` : `-${content.pay}` }}
+        </h2>
       </div>
     </div>
   </div>
@@ -53,8 +58,7 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import IncomeImg from "@images/income.png";
-
+import { IncomeImg } from "@constants/image";
 const props = defineProps({
   cardInfos: {
     type: Object,
@@ -100,8 +104,14 @@ const props = defineProps({
     background-color: $bg-white;
     padding: 20px 16px;
     border-radius: 8px;
-    &--detail {
-      display: flex;
+    &--time {
+      span {
+        display: inline-block;
+      }
+    }
+
+    &--detail-pay,
+    &--detail-income {
       .cash-pay,
       .cash-income {
         background-color: #ededed;
@@ -140,6 +150,13 @@ const props = defineProps({
           width: 160px;
         }
       }
+    }
+
+    .cash-income {
+      color: $yellow;
+    }
+    .cash-pay {
+      color: $black;
     }
   }
 }
