@@ -1,8 +1,8 @@
 {
-  "name": "myApp",
+  "name": "qc-apps",
   "version": "1.0.0",
   "private": true,
-  "description": "QcApps",
+  "description": "qc-apps",
   "templateInfo": {
     "name": "vue3-NutUI",
     "typescript": true,
@@ -53,6 +53,7 @@
     "@tarojs/shared": "3.5.4",
     "@tarojs/taro": "3.5.4",
     "@tarojs/taro-h5": "3.5.4",
+    "axios": "^0.27.2",
     "vue": "^3.0.0"
   },
   "devDependencies": {
