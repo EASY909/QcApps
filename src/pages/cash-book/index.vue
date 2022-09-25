@@ -37,9 +37,9 @@ import {
   TotalSelectorImg,
   SettingImg,
   SettingSelectorImg,
-} from "@constants/image";
+} from "@/constants/image";
 import { ref } from "vue";
-import { CASH_PAGE } from "@constants/cash";
+import { CASH_PAGE } from "@/constants/cash";
 import CashDetail from "./components/CashDetail.vue";
 import CashTotal from "./components/CashTotal.vue";
 import CashSetting from "./components/CashSetting.vue";

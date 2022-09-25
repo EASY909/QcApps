@@ -58,7 +58,8 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import { IncomeImg } from "@constants/image";
+import { IncomeImg } from "@/constants/image";
+
 const props = defineProps({
   cardInfos: {
     type: Object,

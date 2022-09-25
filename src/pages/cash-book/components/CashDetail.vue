@@ -32,6 +32,7 @@
 <script setup lang="ts">
 import CashDetailCard from "./CashDetailCard.vue";
 import { reactive } from "vue";
+import { getCashType } from "../api/cash-type";
 
 const state = reactive({
   showRound: false,
@@ -53,7 +54,10 @@ const cardInfos = reactive({
     },
   ],
 });
-console.log(state, "state");
+
+getCashType().then((res) => {
+  console.log(res);
+});
 </script>
 
 <style lang="scss">
