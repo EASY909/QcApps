@@ -5,7 +5,8 @@ import {
   TabbarItem,
   Icon,
   Popup,
-  OverLay
+  OverLay,
+  Button
  } from "@nutui/nutui-taro";
 
 import './app.scss'
@@ -20,5 +21,6 @@ App.use(Tabbar)
 .use(Icon)
 .use(Popup)
 .use(OverLay)
+.use(Button)
 
 export default App
