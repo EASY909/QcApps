@@ -19,3 +19,6 @@ export const SettingSelectorImg='http://101.43.113.71:8888/down/FyM70bsk9LaS'
 
 // 记账本类型img
 export const IncomeImg='http://101.43.113.71:8888/down/HI0sxQFAFwCc'
+
+//记账本 记一笔
+export const RecordImg='http://101.43.113.71:8888/down/tOYAm6odnv00'

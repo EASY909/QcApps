@@ -71,6 +71,15 @@
     </div>
     <div class="cash-detail__content">
       <cash-detail-card :cardInfos="cardInfos" />
+      <cash-detail-card :cardInfos="cardInfos" />
+      <cash-detail-card :cardInfos="cardInfos" />
+      <cash-detail-card :cardInfos="cardInfos" />
+      <cash-detail-card :cardInfos="cardInfos" />
+      <cash-detail-card :cardInfos="cardInfos" />
+    </div>
+    <div class="cash-detail__record flex-center">
+      <img :src="RecordImg" class="record-img" />
+      <span>记一笔</span>
     </div>
   </div>
 </template>
@@ -82,6 +91,7 @@ import { getCashType } from "../api/cash-type";
 import { ICashTypeResponse } from "@/types/cash";
 import { mergeData } from "@/utils/index";
 import { CASH_TYPE } from "@/constants/cash";
+import { RecordImg } from "@/constants/image";
 
 const state = reactive({
   showRound: false,
@@ -158,7 +168,28 @@ const tapCashTypeButton = (id: number, text: string) => {
   }
   &__content {
     background-color: #ededed;
-    padding: 16px;
+    padding: 8px;
+    .cash-detail-card:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+  &__record {
+    width: 110px;
+    height: 50px;
+    position: sticky;
+    border-radius: 50px;
+    bottom: 100px;
+    left: 100vw;
+    margin-right: 20px;
+    background-color: $white;
+    box-shadow: $font-grown 0 0 8px;
+    font-size: 14px;
+    color: $green;
+    .record-img {
+      width: 22px;
+      height: 22px;
+      margin-right: 4px;
+    }
   }
 }
 .cash-type-pop {
