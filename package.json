@@ -53,6 +53,7 @@
     "@tarojs/shared": "3.5.4",
     "@tarojs/taro": "3.5.4",
     "@tarojs/taro-h5": "3.5.4",
+    "@vueuse/core": "^9.3.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {

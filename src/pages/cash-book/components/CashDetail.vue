@@ -3,71 +3,16 @@
     <div class="cash-detail__header">
       <div
         class="cash-detail__header--type flex-center-between"
-        @tap="state.showRound = true"
+        @tap="cashDetailTypeVisible = true"
       >
         <span class="f14">{{ activeButton.text }}</span>
         <nut-icon name="category" />
       </div>
-      <nut-popup
-        position="bottom"
-        closeable
-        round
-        :style="{ height: '60%', backgroundColor: '#fafafa' }"
-        close-icon-position="top-left"
-        v-model:visible="state.showRound"
-        pop-class="cash-type-pop"
-      >
-        <div class="cash-type-pop__header f14 pt20 pb20">
-          请选择类型
-        </div>
-        <div class="cash-type-pop__content">
-          <nut-button
-            shape="square"
-            :class="activeButton.id === 0 ? 'is-active' : ''"
-            @tap="tapCashTypeButton(0, '全部类型')"
-            >全部类型</nut-button
-          >
-
-          <div class="cash-type-pop__content--button">
-            <h3 class="mt12 mb8">{{ CASH_TYPE.pay.text }}</h3>
-            <div class="cash-type-pop__content--button--wrapper">
-              <nut-button
-                v-for="items in cashTypeData.pay"
-                shape="square"
-                :class="activeButton.id === items.id ? 'is-active' : ''"
-                @tap="tapCashTypeButton(items.id, items.text)"
-                >{{ items.text }}</nut-button
-              >
-            </div>
-          </div>
-
-          <div class="cash-type-pop__content--button">
-            <h3 class="mt12 mb8">{{ CASH_TYPE.income.text }}</h3>
-            <div class="cash-type-pop__content--button--wrapper">
-              <nut-button
-                v-for="items in cashTypeData.income"
-                shape="square"
-                :class="activeButton.id === items.id ? 'is-active' : ''"
-                @tap="tapCashTypeButton(items.id, items.text)"
-                >{{ items.text }}</nut-button
-              >
-            </div>
-          </div>
-
-          <div class="cash-type-pop__content--button">
-            <h3 class="mt12 mb8">{{ CASH_TYPE.notincluded.text }}</h3>
-            <div class="cash-type-pop__content--button--wrapper">
-              <nut-button
-                v-for="items in cashTypeData.notincluded"
-                shape="square"
-                :class="activeButton.id === items.id ? 'is-active' : ''"
-                @tap="tapCashTypeButton(items.id, items.text)"
-                >{{ items.text }}</nut-button
-              >
-            </div>
-          </div>
-        </div>
-      </nut-popup>
+      <!-- 类型 -->
+      <cash-detail-type
+        v-model:visible="cashDetailTypeVisible"
+        @changeButton="getButton"
+      />
     </div>
     <div class="cash-detail__content">
       <cash-detail-card :cardInfos="cardInfos" />
@@ -77,25 +22,25 @@
       <cash-detail-card :cardInfos="cardInfos" />
       <cash-detail-card :cardInfos="cardInfos" />
     </div>
-    <div class="cash-detail__record flex-center">
+    <div
+      class="cash-detail__record flex-center"
+      @tap="cashDetailRecordVisible = true"
+    >
       <img :src="RecordImg" class="record-img" />
       <span>记一笔</span>
     </div>
+    <!-- 记一笔弹窗 -->
+    <cash-detail-record v-model:visible="cashDetailRecordVisible" />
   </div>
 </template>
 
 <script setup lang="ts">
 import CashDetailCard from "./CashDetailCard.vue";
-import { reactive } from "vue";
-import { getCashType } from "../api/cash-type";
-import { ICashTypeResponse } from "@/types/cash";
-import { mergeData } from "@/utils/index";
-import { CASH_TYPE } from "@/constants/cash";
+import { reactive, Ref, ref } from "vue";
 import { RecordImg } from "@/constants/image";
+import CashDetailType from "./CashDetailType.vue";
+import CashDetailRecord from "./CashDetailRecord.vue";
 
-const state = reactive({
-  showRound: false,
-});
 const cardInfos = reactive({
   cardHeader: {
     date: "9月10日",
@@ -114,25 +59,18 @@ const cardInfos = reactive({
   ],
 });
 
-//type data
-const cashTypeData: ICashTypeResponse = reactive({
-  income: [],
-  pay: [],
-  notincluded: [],
-});
-getCashType().then(({ data }) => {
-  mergeData(cashTypeData, data.data);
-});
-
 const activeButton = reactive({
   id: 0,
   text: "全部类型",
 });
 
-const tapCashTypeButton = (id: number, text: string) => {
+const getButton = ({ id, text }) => {
   activeButton.id = id;
   activeButton.text = text;
 };
+
+const cashDetailTypeVisible: Ref<boolean> = ref(false);
+const cashDetailRecordVisible: Ref<boolean> = ref(false);
 </script>
 
 <style lang="scss">
@@ -189,41 +127,6 @@ const tapCashTypeButton = (id: number, text: string) => {
       width: 22px;
       height: 22px;
       margin-right: 4px;
-    }
-  }
-}
-.cash-type-pop {
-  border-radius: 8px 8px 0 0 !important;
-  &__header {
-    text-align: center;
-    border-bottom: 1px solid $font-grown;
-  }
-  &__content {
-    padding: 24px 16px 16px;
-    h3 {
-      font-size: 14px;
-      color: $font-grown;
-    }
-    button {
-      border: none;
-      border-radius: 2px;
-      height: 42px;
-      &.is-active {
-        background-color: $green;
-        color: $white;
-      }
-    }
-    &--button {
-      button {
-        color: $black;
-        background-color: $white;
-      }
-      &--wrapper {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-gap: 8px;
-      }
     }
   }
 }

@@ -57,7 +57,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
 import { IncomeImg } from "@/constants/image";
 
 const props = defineProps({
