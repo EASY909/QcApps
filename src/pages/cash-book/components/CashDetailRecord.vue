@@ -10,21 +10,20 @@
     @click-close-icon="closePopup"
     @click-overlay="closePopup"
   >
-    记一笔
-    <nut-numberkeyboard
-      type="rightColumn"
-      v-model:visible="popupVisible"
-      :custom-key="customKey"
-      confirm-text="确定"
-      @close="closePopup"
-      :pop-class="popClass"
-      v-model:value="keyBoardValue"
-    />
+    <div class="cash-record-pop__chose">
+      <cash-button :color="COLOR.green" @tap="choseRecord">支出 </cash-button>
+      <cash-button :color="COLOR.yellow" @tap="choseRecord">入账 </cash-button>
+      <cash-button :color="COLOR.blue" @tap="choseRecord"
+        >不计入收支
+      </cash-button>
+    </div>
   </nut-popup>
 </template>
 <script setup lang="ts">
 import { useVModel } from "@vueuse/core";
-import { reactive, ref, watch } from "vue";
+import { ref, watch } from "vue";
+import CashButton from "@/pages/components/CashButton.vue";
+import { COLOR } from "@/constants/cash";
 
 const props = defineProps<{
   visible: boolean;
@@ -33,8 +32,6 @@ const props = defineProps<{
 const emit = defineEmits(["update:visible"]);
 
 const popupVisible = useVModel(props, "visible", emit);
-
-const customKey = reactive(["."]);
 
 const closePopup = () => {
   popupVisible.value = false;
@@ -55,42 +52,25 @@ watch(
     immediate: true,
   }
 );
+
+const choseRecord = (e) => {
+  console.log(e);
+  e.stopPropagation(); // 阻止冒泡
+};
 </script>
 
 <style lang="scss">
 @import "@/assets/styles/index.scss";
 .cash-record-pop {
+  padding: 70px 16px 0 16px;
   border-radius: 8px 8px 0 0 !important;
   &__header {
     text-align: center;
     border-bottom: 1px solid $font-grown;
   }
-  &__content {
-    padding: 24px 16px 16px;
-    h3 {
-      font-size: 14px;
-      color: $font-grown;
-    }
-    button {
-      border: none;
-      border-radius: 2px;
-      height: 42px;
-      &.is-active {
-        background-color: $green;
-        color: $white;
-      }
-    }
-    &--button {
-      button {
-        color: $black;
-        background-color: $white;
-      }
-      &--wrapper {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-gap: 8px;
-      }
+  &__chose {
+    .cash-button:not(:last-child) {
+      margin-right: 8px;
     }
   }
   .key-board {

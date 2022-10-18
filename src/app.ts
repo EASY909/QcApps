@@ -6,8 +6,7 @@ import {
   Icon,
   Popup,
   OverLay,
-  Button,
-  NumberKeyboard
+  Button
  } from "@nutui/nutui-taro";
 
 import './app.scss'
@@ -23,6 +22,5 @@ App.use(Tabbar)
 .use(Popup)
 .use(OverLay)
 .use(Button)
-.use(NumberKeyboard)
 
 export default App

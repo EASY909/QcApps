@@ -21,3 +21,8 @@ export type ListType={
   text:string,
   value:number,
 }
+
+export type BaseValue={
+  label:string,
+  value:string
+}
