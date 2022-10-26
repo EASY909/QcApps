@@ -3,7 +3,11 @@
     position="bottom"
     closeable
     round
-    :style="{ height: '80%', backgroundColor: '#fafafa' }"
+    :style="{
+      height: '80%',
+      width: '100%',
+      backgroundColor: '#fafafa',
+    }"
     close-icon-position="top-left"
     v-model:visible="popupVisible"
     pop-class="cash-record-pop"
@@ -17,6 +21,9 @@
         >不计入收支
       </cash-button>
     </div>
+    <div class="cash-record-pop__keyboard">
+      <key-board />
+    </div>
   </nut-popup>
 </template>
 <script setup lang="ts">
@@ -24,6 +31,7 @@ import { useVModel } from "@vueuse/core";
 import { ref, watch } from "vue";
 import CashButton from "@/pages/components/CashButton.vue";
 import { COLOR } from "@/constants/cash";
+import KeyBoard from "./KeyBoard.vue";
 
 const props = defineProps<{
   visible: boolean;
@@ -62,26 +70,29 @@ const choseRecord = (e) => {
 <style lang="scss">
 @import "@/assets/styles/index.scss";
 .cash-record-pop {
-  padding: 70px 16px 0 16px;
   border-radius: 8px 8px 0 0 !important;
   &__header {
     text-align: center;
     border-bottom: 1px solid $font-grown;
   }
   &__chose {
+    margin: 70px 16px 0 16px;
     .cash-button:not(:last-child) {
       margin-right: 8px;
     }
   }
-  .key-board {
-    .key-board-wrapper .finish {
-      background-color: $green !important;
-    }
+  &__keyboard {
+    height: 40%;
   }
-  .key-board-light {
-    .key-board-wrapper .finish {
-      background-color: rgba(61, 183, 120, 0.5) !important;
-    }
-  }
+  // .key-board {
+  //   .key-board-wrapper .finish {
+  //     background-color: $green !important;
+  //   }
+  // }
+  // .key-board-light {
+  //   .key-board-wrapper .finish {
+  //     background-color: rgba(61, 183, 120, 0.5) !important;
+  //   }
+  // }
 }
 </style>
