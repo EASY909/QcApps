@@ -6,7 +6,11 @@ import {
   Icon,
   Popup,
   OverLay,
-  Button
+  Button,
+  Tabs,
+  TabPane,
+  Calendar,
+  Input
  } from "@nutui/nutui-taro";
 
 import './app.scss'
@@ -22,5 +26,9 @@ App.use(Tabbar)
 .use(Popup)
 .use(OverLay)
 .use(Button)
+.use(Tabs)
+.use(TabPane)
+.use(Input)
+.use(Calendar);
 
 export default App

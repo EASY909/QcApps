@@ -54,6 +54,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+const emit = defineEmits(["getMoney"]);
+
 const numberBoard = ref([
   {
     key: 1,
@@ -111,8 +113,20 @@ const sidebarBoard = ref([
     active: false,
   },
 ]);
-const onTouchstart = (item) => {
+const money = ref<(number | string)[]>([]);
+
+const onTouchstart = (item: { key: number | string; active: boolean }) => {
   item.active = true;
+  if (item.key === "delete") {
+    money.value.pop();
+    emit("getMoney", money.value.join(""));
+    return;
+  }
+  if (item.key === "confirm") {
+    //关闭弹窗
+  }
+  money.value.push(item.key);
+  emit("getMoney", money.value.join(""));
 };
 
 const onTouchend = (item) => {

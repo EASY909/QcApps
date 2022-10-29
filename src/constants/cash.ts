@@ -21,8 +21,17 @@ export const CASH_TYPE: Record<string, ListType> = {
   }
 }
 
-export enum COLOR {
-  green = '#3db778',
-  yellow = '#f1b53b',
-  blue = '#7987aa'
+export const COLOR = {
+  green: {
+    type: "button-green",
+    value:"#3db778"
+  },
+  yellow:{
+    type: "button-yellow",
+    value:"#f1b53b"
+  },
+  blue:{
+    type: "button-blue",
+    value:"#7987aa"
+  }
 }

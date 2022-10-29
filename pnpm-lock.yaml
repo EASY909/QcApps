@@ -30,6 +30,7 @@ specifiers:
   babel-plugin-import: ^1.13.3
   babel-preset-taro: 3.5.4
   css-loader: 3.4.2
+  dayjs: ^1.11.6
   eslint: ^8.12.0
   eslint-config-taro: 3.5.4
   eslint-plugin-vue: ^8.0.0
@@ -59,6 +60,7 @@ dependencies:
   '@tarojs/taro': 3.5.4_vue@3.2.38
   '@tarojs/taro-h5': 3.5.4_vue@3.2.38
   '@vueuse/core': 9.3.0_vue@3.2.38
+  dayjs: 1.11.6
   vue: 3.2.38
 
 devDependencies:
@@ -5050,6 +5052,10 @@ packages:
       whatwg-mimetype: 2.3.0
       whatwg-url: 7.1.0
     dev: true
+
+  /dayjs/1.11.6:
+    resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
+    dev: false
 
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
