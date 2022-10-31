@@ -33,6 +33,7 @@
             :class="[
               item.key === 'delete' ? 'key' : 'key finish',
               item.active ? 'active' : '',
+              money.length === 0 ? 'empty' : '',
             ]"
             :onTouchstart="() => onTouchstart(item)"
             :onTouchend="() => onTouchend(item)"
@@ -52,9 +53,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import Taro from "@tarojs/taro";
 
-const emit = defineEmits(["getMoney"]);
+interface IProps {
+  popupVisible: boolean;
+}
+const props = withDefaults(defineProps<IProps>(), {
+  popupVisible: true,
+});
+const emit = defineEmits(["getMoney", "closePopup"]);
 
 const numberBoard = ref([
   {
@@ -117,14 +125,32 @@ const money = ref<(number | string)[]>([]);
 
 const onTouchstart = (item: { key: number | string; active: boolean }) => {
   item.active = true;
-  if (item.key === "delete") {
-    money.value.pop();
-    emit("getMoney", money.value.join(""));
+  if (money.value.join("") === "0.00" && item.key !== "delete") return;
+  if (item.key === "confirm" && money.value.length === 0) {
+    Taro.showToast({
+      title: "请输入具体金额",
+      duration: 2000,
+      icon: "none",
+    });
     return;
   }
   if (item.key === "confirm") {
     //关闭弹窗
+    emit("closePopup");
+    Taro.showToast({
+      title: "已记一笔",
+      duration: 2000,
+      icon: "success",
+    });
+    return;
   }
+  if (item.key === "delete") {
+    if (money.value.length === 0) return;
+    money.value.pop();
+    emit("getMoney", money.value.join(""));
+    return;
+  }
+
   money.value.push(item.key);
   emit("getMoney", money.value.join(""));
 };
@@ -132,6 +158,19 @@ const onTouchstart = (item: { key: number | string; active: boolean }) => {
 const onTouchend = (item) => {
   item.active = false;
 };
+
+// watch(money,nv=>{
+
+// })
+
+watch(
+  () => props.popupVisible,
+  (nv) => {
+    if (nv) {
+      money.value = [];
+    }
+  }
+);
 </script>
 
 <style lang="scss">
@@ -226,6 +265,9 @@ const onTouchend = (item) => {
         }
         .key.active {
           background-color: #349a65;
+        }
+        .finish.empty {
+          background-color: rgba(61, 183, 120, 0.5);
         }
       }
     }

@@ -43,7 +43,11 @@
       </nut-tabs>
     </div>
     <div class="cash-record-pop__keyboard">
-      <key-board @getMoney="getMoney" />
+      <key-board
+        @getMoney="getMoney"
+        @closePopup="closePopup"
+        :popupVisible="popupVisible"
+      />
     </div>
   </nut-popup>
 </template>
@@ -85,6 +89,7 @@ const popupVisible = useVModel(props, "visible", emit);
 
 const closePopup = () => {
   popupVisible.value = false;
+  state.money = "";
 };
 
 const openSwitch = (param) => {
@@ -100,7 +105,6 @@ const setChooseValue = (value) => {
 };
 
 function getMoney(value) {
-  console.log(value);
   state.money = value;
 }
 </script>
@@ -125,7 +129,6 @@ function getMoney(value) {
     .nut-tabpane {
       height: 200px;
       background-color: $bg-white;
-      // background-color: pink;
       padding: 0;
     }
     .nut-input {
